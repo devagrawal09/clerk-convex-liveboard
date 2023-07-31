@@ -1,24 +1,8 @@
-import { SignedIn, SignedOut } from '@clerk/nextjs'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import Head from 'next/head'
-import { APIRequest } from './api-request'
-
-const ClerkFeatures = () => (
-  <Link href="/user" className={styles.cardContent}>
-    <img src="/icons/layout.svg" />
-    <div>
-      <h3>Explore features provided by Clerk</h3>
-      <p>
-        Interact with the user button, user profile, and more to preview what
-        your users will see
-      </p>
-    </div>
-    <div className={styles.arrow}>
-      <img src="/icons/arrow-right.svg" />
-    </div>
-  </Link>
-)
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Head from "next/head";
+import { LiveBoard } from "./live-board";
 
 const SignupLink = () => (
   <Link href="/sign-up" className={styles.cardContent}>
@@ -34,7 +18,7 @@ const SignupLink = () => (
       <img src="/icons/arrow-right.svg" />
     </div>
   </Link>
-)
+);
 
 // Main component using <SignedIn> & <SignedOut>.
 //
@@ -44,42 +28,18 @@ const SignupLink = () => (
 // https://docs.clerk.dev/frontend/react/signedin-and-signedout
 const Main = () => (
   <main className={styles.main}>
-    <h1 className={styles.title}>Welcome to your new app</h1>
-    <p className={styles.description}>Sign up for an account to get started</p>
+    <h1 className={styles.title}>Welcome to LiveBoard</h1>
 
     <div className={styles.cards}>
       <div className={styles.card}>
         <SignedIn>
-          <ClerkFeatures />
+          <LiveBoard />
         </SignedIn>
         <SignedOut>
           <SignupLink />
         </SignedOut>
       </div>
-
-      <div className={styles.card}>
-        <Link
-          href="https://dashboard.clerk.dev"
-          target="_blank"
-          rel="noreferrer"
-          className={styles.cardContent}
-        >
-          <img src="/icons/settings.svg" />
-          <div>
-            <h3>Configure settings for your app</h3>
-            <p>
-              Visit Clerk to manage instances and configure settings for user
-              management, theme, and more
-            </p>
-          </div>
-          <div className={styles.arrow}>
-            <img src="/icons/arrow-right.svg" />
-          </div>
-        </Link>
-      </div>
     </div>
-
-    <APIRequest />
 
     <div className={styles.links}>
       <Link
@@ -88,7 +48,15 @@ const Main = () => (
         rel="noreferrer"
         className={styles.link}
       >
-        <span className={styles.linkText}>Read Clerk documentation</span>
+        <span className={styles.linkText}>Clerk docs</span>
+      </Link>
+      <Link
+        href="https://docs.convex.dev/"
+        target="_blank"
+        rel="noreferrer"
+        className={styles.link}
+      >
+        <span className={styles.linkText}>Convex docs</span>
       </Link>
       <Link
         href="https://nextjs.org/docs"
@@ -96,25 +64,29 @@ const Main = () => (
         rel="noreferrer"
         className={styles.link}
       >
-        <span className={styles.linkText}>Read NextJS documentation</span>
+        <span className={styles.linkText}>NextJS docs</span>
       </Link>
     </div>
   </main>
-)
+);
 
 // Footer component
 const Footer = () => (
   <footer className={styles.footer}>
-    Powered by{' '}
+    Powered by{" "}
     <a href="https://clerk.dev" target="_blank" rel="noopener noreferrer">
       <img src="/clerk.svg" alt="Clerk.dev" className={styles.logo} />
+    </a>
+    +
+    <a href="https://convex.dev" target="_blank" rel="noopener noreferrer">
+      <img src="/convex.jpeg" alt="Convex.dev" className={styles.logo} />
     </a>
     +
     <a href="https://nextjs.org/" target="_blank" rel="noopener noreferrer">
       <img src="/nextjs.svg" alt="Next.js" className={styles.logo} />
     </a>
   </footer>
-)
+);
 
 export default function Home() {
   return (
@@ -130,5 +102,5 @@ export default function Home() {
       <Main />
       <Footer />
     </div>
-  )
+  );
 }
